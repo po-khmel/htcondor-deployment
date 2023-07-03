@@ -67,7 +67,7 @@ write_files:
 packages:
   - ansible
 runcmd:
-  - yum install python3-pip
+  - yum install python3-pip -y
   - python3 -m pip install ansible
   - ansible-galaxy install -p /home/rocky/roles usegalaxy_eu.htcondor
   - ansible-playbook -i 'localhost,' /home/rocky/condor.yml
