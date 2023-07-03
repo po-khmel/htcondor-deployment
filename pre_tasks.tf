@@ -1,12 +1,12 @@
 # #####  comment these blocks if the features are already available #####
 
-# # Upload virtual machine image
-# resource "openstack_images_image_v2" "htcondor-image" {
-#   name             = var.image.name
-#   image_source_url = var.image.image_source_url
-#   container_format = var.image.container_format
-#   disk_format      = var.image.disk_format
-# }
+# Upload virtual machine image
+resource "openstack_images_image_v2" "htcondor-image" {
+  name             = var.image.name
+  image_source_url = var.image.image_source_url
+  container_format = var.image.container_format
+  disk_format      = var.image.disk_format
+}
 
 # # Create private network
 # resource "openstack_networking_network_v2" "internal" {
