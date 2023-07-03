@@ -10,7 +10,7 @@ resource "openstack_compute_instance_v2" "exec-node" {
     uuid = data.openstack_networking_network_v2.internal.id
   }
 
-  user_data = data.template_cloudinit_config.exec_config
+  user_data = data.template_file.cm_user_data.rendered
   # <<-EOF
   #   #cloud-config
   #   system_info:
