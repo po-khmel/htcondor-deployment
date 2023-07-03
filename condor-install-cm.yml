@@ -1,0 +1,33 @@
+---
+- name: Install HTCondor Central Manager on Pulsar
+  become: yes
+  hosts: all
+  pre_tasks:
+    - name: Install Dependencies
+      package:
+        name: rsync
+      become: true
+    # - name: Set default version of Python
+    #   alternatives:
+    #     name: python
+    #     path: /usr/bin/python3
+    #     link: /usr/bin/python
+    - name: Disable firewalld service
+      ansible.builtin.service:
+        name: firewalld
+        enabled: false
+        state: stopped
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+  roles:
+    - name: usegalaxy_eu.htcondor
+      vars:
+        condor_role: central-manager
+        condor_copy_template: false
+  post_tasks:
+    - name: Condor auto approve
+      ansible.builtin.cron:
+        name: condor_auto_approve
+        minute: 0
+        job: '/usr/bin/condor_token_request_auto_approve -netblock {{ condor_ip_range }} -lifetime 3660'
