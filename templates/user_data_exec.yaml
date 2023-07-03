@@ -54,12 +54,6 @@ write_files:
         become: yes
         hosts: all
         connection: local
-        pre_tasks:
-          - name: Install pip
-            yum:
-              name: python-pip
-              state: latest
-            become: true
         roles:
           - name: usegalaxy_eu.htcondor
             vars:
@@ -73,6 +67,7 @@ write_files:
 packages:
   - ansible
 runcmd:
+  - yum install python3-pip
   - python3 -m pip install ansible
   - ansible-galaxy install -p /home/rocky/roles usegalaxy_eu.htcondor
   - ansible-playbook -i 'localhost,' /home/rocky/condor.yml
