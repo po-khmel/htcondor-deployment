@@ -90,14 +90,10 @@ variable "ssh-port" {
 }
 
 variable "pvt_key" {
-  sensitive = true
+  # sensitive = true
 }
 
 variable "condor_pass" {
-  sensitive = true
+  # sensitive = true
 }
 
-variable "private_rsa_key" {
-  type      = string
-  sensitive = true
-}
