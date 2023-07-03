@@ -7,16 +7,6 @@
       package:
         name: rsync
       become: true
-    # - name: Set default version of Python
-    #   alternatives:
-    #     name: python
-    #     path: /usr/bin/python3
-    #     link: /usr/bin/python
-    # - name: Disable firewalld service
-    #   ansible.builtin.service:
-    #     name: firewalld
-    #     enabled: false
-    #     state: stopped
     - name: Disable SELinux
       selinux:
         state: disabled

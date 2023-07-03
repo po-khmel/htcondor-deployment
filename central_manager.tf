@@ -4,6 +4,7 @@ resource "openstack_compute_instance_v2" "central-manager" {
   image_id        = data.openstack_images_image_v2.htcondor-image.id
   key_pair        = openstack_compute_keypair_v2.cloud-key.name
   security_groups = var.secgroups_cm
+  depends_on      = openstack_compute_instance_v2.nfs-server
 
   network {
     uuid = data.openstack_networking_network_v2.internal.id
