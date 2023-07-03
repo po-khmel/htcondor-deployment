@@ -13,7 +13,7 @@ variable "flavors" {
   default = {
     "central-manager" = "m1.small"
     "nfs-server"      = "m1.medium"
-    "exec-node"       = "m1.xl"
+    "exec-node"       = "m1.xlarge"
   }
 }
 

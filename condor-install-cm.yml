@@ -12,11 +12,11 @@
     #     name: python
     #     path: /usr/bin/python3
     #     link: /usr/bin/python
-    - name: Disable firewalld service
-      ansible.builtin.service:
-        name: firewalld
-        enabled: false
-        state: stopped
+    # - name: Disable firewalld service
+    #   ansible.builtin.service:
+    #     name: firewalld
+    #     enabled: false
+    #     state: stopped
     - name: Disable SELinux
       selinux:
         state: disabled
