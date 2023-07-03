@@ -28,7 +28,7 @@ variable "image" {
     "name"             = "Rocky-9-GenericCloud.latest.x86_64"
     "image_source_url" = "https://download.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-GenericCloud.latest.x86_64.qcow2"
     "container_format" = "bare"
-    "disk_format"      = "QCOW2"
+    "disk_format"      = "qcow2"
     "description"      = "downloaded from https://download.rockylinux.org"
   }
 }

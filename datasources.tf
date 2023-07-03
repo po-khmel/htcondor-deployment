@@ -12,7 +12,7 @@ data "openstack_images_image_v2" "htcondor-image" {
 }
 
 data "openstack_compute_keypair_v2" "cloud-key" {
-  name = var.public_key.name
+  name = openstack_compute_keypair_v2.cloud-key.name
 }
 
 data "cloudinit_config" "nfs-share" {
