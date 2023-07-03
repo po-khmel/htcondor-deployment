@@ -89,6 +89,15 @@ variable "ssh-port" {
   default = "22"
 }
 
-variable "pvt_key" {}
+variable "pvt_key" {
+  sensitive = true
+}
 
-variable "condor_pass" {}
+variable "condor_pass" {
+  sensitive = true
+}
+
+variable "private_rsa_key" {
+  type      = string
+  sensitive = true
+}
