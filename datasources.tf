@@ -43,3 +43,21 @@ data "cloudinit_config" "nfs-share" {
   EOF
   }
 }
+
+data "template_file" "cm_user_data" {
+  template = file("${path.module}/templates/user_data_cm.yaml")
+  vars = {
+    nfs_server_ip = openstack_compute_instance_v2.nfs-server.access_ip_v4
+    domain_name   = var.domain_name
+  }
+}
+
+data "template_file" "exec_node_user_data" {
+  template = file("${path.module}/templates/user_data_exec.yaml")
+  vars = {
+    nfs_server_ip  = openstack_compute_instance_v2.nfs-server.access_ip_v4
+    condor_host_ip = openstack_compute_instance_v2.central-manager.network.0.fixed_ip_v4
+    domain_name    = var.domain_name
+    condor_pass    = var.condor_pass
+  }
+}
