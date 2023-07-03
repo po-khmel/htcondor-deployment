@@ -67,6 +67,8 @@ write_files:
 packages:
   - ansible
 runcmd:
+  - mkdir -p /data/share
+  - chown rocky.rocky /data/share
   - yum install python3-pip -y
   - python3 -m pip install ansible
   - ansible-galaxy install -p /home/rocky/roles usegalaxy_eu.htcondor
