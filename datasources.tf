@@ -52,6 +52,16 @@ data "template_file" "cm_user_data" {
   }
 }
 
+data "template_cloudinit_config" "cm_config" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/cloud-config"
+    content      = data.template_file.cm_user_data.rendered
+  }
+}
+
 data "template_file" "exec_node_user_data" {
   template = file("${path.module}/templates/user_data_exec.yaml")
   vars = {
@@ -59,5 +69,15 @@ data "template_file" "exec_node_user_data" {
     condor_host_ip = openstack_compute_instance_v2.central-manager.network.0.fixed_ip_v4
     domain_name    = var.domain_name
     condor_pass    = var.condor_pass
+  }
+}
+
+data "template_cloudinit_config" "exec_config" {
+  gzip          = true
+  base64_encode = true
+
+  part {
+    content_type = "text/cloud-config"
+    content      = data.template_file.exec_node_user_data.rendered
   }
 }

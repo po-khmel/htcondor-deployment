@@ -13,7 +13,7 @@ resource "openstack_compute_instance_v2" "central-manager" {
     command = "sleep 60; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u rocky -b -i '${self.access_ip_v4},' --private-key ${var.pvt_key} --extra-vars='condor_host=${self.access_ip_v4} condor_ip_range=${var.private_network.cidr4} condor_password=${var.condor_pass}' condor-install-cm.yml"
   }
 
-  user_data = data.template_file.cm_user_data
+  user_data = data.template_cloudinit_config.cm_config
   #             <<-EOF
   #   #cloud-config
   #   system_info:
