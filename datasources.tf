@@ -33,9 +33,8 @@ data "cloudinit_config" "nfs-share" {
 data "template_file" "cm_user_data" {
   template = file("${path.module}/templates/user_data_cm.yaml")
   vars = {
-    nfs_server_ip   = openstack_compute_instance_v2.nfs-server.access_ip_v4
-    domain_name     = var.domain_name
-    private_rsa_key = var.private_rsa_key
+    nfs_server_ip = openstack_compute_instance_v2.nfs-server.access_ip_v4
+    domain_name   = var.domain_name
   }
 }
 
