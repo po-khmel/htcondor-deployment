@@ -7,7 +7,7 @@ data "openstack_networking_network_v2" "internal" {
 }
 
 data "openstack_images_image_v2" "htcondor-image" {
-  name        = var.image.name
+  name        = openstack_images_image_v2.htcondor-image.name
   most_recent = true
 }
 
