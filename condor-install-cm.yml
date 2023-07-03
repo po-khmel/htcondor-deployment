@@ -1,5 +1,5 @@
 ---
-- name: Install HTCondor Central Manager on Pulsar
+- name: Install HTCondor Central Manager
   become: yes
   hosts: all
   pre_tasks:

@@ -54,6 +54,12 @@ write_files:
         become: yes
         hosts: all
         connection: local
+        pre_tasks:
+          - name: Install pip
+            yum:
+              name: python-pip
+              state: latest
+            become: true
         roles:
           - name: usegalaxy_eu.htcondor
             vars:
