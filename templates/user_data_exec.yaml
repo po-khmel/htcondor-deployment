@@ -65,11 +65,14 @@ write_files:
     path: /home/rocky/condor.yml
     permissions: "0644"
 packages:
-  - ansible
+  - autofs
+  - python3-pip
 runcmd:
   - mkdir -p /data/share
   - chown rocky.rocky /data/share
-  - yum install python3-pip -y
+  # - yum install autofs python3-pip -y
+  - systemctl start autofs
+  - systemctl enable autofs
   - python3 -m pip install ansible
   - ansible-galaxy install -p /home/rocky/roles usegalaxy_eu.htcondor
   - ansible-playbook -i 'localhost,' /home/rocky/condor.yml

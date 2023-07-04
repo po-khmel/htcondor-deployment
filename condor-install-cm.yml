@@ -3,9 +3,17 @@
   become: yes
   hosts: all
   pre_tasks:
-    - name: Install Dependencies
+    - name: Install rsync
       package:
-        name: rsync
+        name:
+          - rsync
+          - autofs
+      become: true
+    - name: Enable autofs
+      ansible.builtin.systemd:
+        name: autofs
+        state: started
+        enabled: true
       become: true
     - name: Disable SELinux
       selinux:
