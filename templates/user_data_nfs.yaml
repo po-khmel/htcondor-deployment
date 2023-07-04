@@ -1,4 +1,16 @@
 #cloud-config
+system_info:
+  default_user:
+    name: rocky
+    gecos: RHEL Cloud User
+    groups: [wheel, adm, systemd-journal]
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+  distro: rhel
+  paths:
+    cloud_dir: /var/lib/cloud
+    templates_dir: /etc/cloud/templates
+  ssh_svcname: sshd
 write_files:
   - content: |
       /data/share *(rw,sync)
