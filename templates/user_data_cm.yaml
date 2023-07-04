@@ -76,7 +76,7 @@ write_files:
     permissions: "0644"
 runcmd:
   - mkdir -p /data/share
-  - chown rocky:rocky /data/share
+  - chown rocky:rocky -R /data/share
   - [mv, /etc/ssh/htcondor.key, /home/rocky/.ssh/id_rsa]
   - chmod 0600 /home/rocky/.ssh/id_rsa
   - [chown, rocky.rocky, /home/rocky/.ssh/id_rsa]
