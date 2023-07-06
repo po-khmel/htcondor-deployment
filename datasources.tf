@@ -18,15 +18,13 @@ data "openstack_compute_keypair_v2" "cloud-key" {
 data "cloudinit_config" "nfs-share" {
   gzip          = true
   base64_encode = true
-
-  part {
-    content_type = "text/x-shellscript"
-    content      = file("${path.module}/files/create_share.sh")
-  }
-
   part {
     content_type = "text/cloud-config"
     content      = file("${path.module}/templates/user_data_nfs.yaml")
+  }
+  part {
+    content_type = "text/x-shellscript"
+    content      = file("${path.module}/files/create_share.sh")
   }
 }
 
